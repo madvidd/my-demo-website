@@ -12,8 +12,8 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
-// MongoDB connection URL
-const dbURI = 'mongodb://localhost/usmle-exam'; // Or your MongoDB Atlas URI
+// MongoDB connection URL (you can replace this with your MongoDB Atlas URL if using Atlas)
+const dbURI = 'mongodb://localhost/my-demo-website'; // Use your database name
 
 mongoose.connect(dbURI)
     .then(() => console.log('MongoDB connected for server...'))
@@ -36,6 +36,19 @@ app.get('/questions', async (req, res) => {
         res.json(questions);
     } catch (err) {
         res.status(500).json({ message: 'Failed to retrieve questions', error: err });
+    }
+});
+
+// Route to post a question (if needed)
+app.post('/questions', async (req, res) => {
+    const { question, options, correct } = req.body;
+    
+    try {
+        const newQuestion = new Question({ question, options, correct });
+        await newQuestion.save();
+        res.status(201).json(newQuestion);
+    } catch (err) {
+        res.status(500).json({ message: 'Failed to save the question', error: err });
     }
 });
 
