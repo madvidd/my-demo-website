@@ -1,3 +1,4 @@
+// server.js (Add this code to handle fetching questions)
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -18,30 +19,18 @@ const questionSchema = new mongoose.Schema({
 
 const Question = mongoose.model('Question', questionSchema);
 
-// Route to get all questions
+// Route to get questions
 app.get('/questions', async (req, res) => {
     try {
         const questions = await Question.find();
-        res.json(questions);
-    } catch (error) {
-        res.status(500).send(error);
+        res.json(questions);  // Send questions as JSON
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to fetch questions' });
     }
 });
 
-// Route to add a question (for admin)
-app.post('/questions', async (req, res) => {
-    const { question, options, correct } = req.body;
-    const newQuestion = new Question({ question, options, correct });
-    try {
-        await newQuestion.save();
-        res.status(201).send(newQuestion);
-    } catch (error) {
-        res.status(500).send(error);
-    }
-});
-
-// Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+// Start server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
