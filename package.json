@@ -1,22 +1,20 @@
 {
-  "name": "my-demo-website",
+  "name": "usmle-exam-app",
   "version": "1.0.0",
-  "description": "A demo website with authentication",
+  "description": "A smart exam app for USMLE",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^5.10.9",
+    "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^8.2.0"
+    "mongoose": "^6.7.0",
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.19"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.4"
-  },
-  "author": "Your Name",
+  "devDependencies": {},
+  "author": "",
   "license": "ISC"
 }
