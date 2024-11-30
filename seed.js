@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // MongoDB connection URL
 const dbURI = 'mongodb://localhost/usmle-exam'; // Or use your cloud database URI (e.g., MongoDB Atlas)
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(dbURI)
     .then(() => console.log('MongoDB connected for seeding...'))
     .catch((err) => console.log('Failed to connect to MongoDB:', err));
 
