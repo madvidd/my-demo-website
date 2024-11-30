@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Demo Website</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USMLE Smart Exam</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Welcome to My Demo Website</h1>
-  </header>
-  
-  <main>
-    <p>This is a simple demo website. You can add more features and style it further.</p>
-    <button onclick="changeColor()">Click me to change background color</button>
-  </main>
-  
-  <footer>
-    <p>Made with ❤️ by [Your Name]</p>
-  </footer>
+    <div class="container">
+        <h1>USMLE Practice Exam</h1>
+        
+        <div id="question-container">
+            <p id="question-text">Loading...</p>
+            <ul id="options"></ul>
+        </div>
+        
+        <div class="timer">
+            <span id="time-left">Time Left: 10:00</span>
+        </div>
+        
+        <button id="next-button" onclick="nextQuestion()">Next Question</button>
+    </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
