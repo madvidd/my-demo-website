@@ -1,29 +1,36 @@
+require('dotenv').config(); // Load environment variables from the .env file
 const mongoose = require('mongoose');
 
-// MongoDB connection URL
-const dbURI = 'mongodb://localhost/my-demo-website'; // Or use your cloud MongoDB URI
+// MongoDB connection URL (from .env file)
+const dbURI = process.env.MONGO_URI || 'mongodb://localhost/my-demo-website'; // Local DB fallback
 
-mongoose.connect(dbURI)
-    .then(() => console.log('MongoDB connected for seeding...'))
-    .catch((err) => console.log('Failed to connect to MongoDB:', err));
-
-// Define your question schema
+// Define the question schema
 const questionSchema = new mongoose.Schema({
     question: String,
     options: [String],
     correct: String
 });
 
-// Create a model for the question schema
+// Create a model for the Question schema
 const Question = mongoose.model('Question', questionSchema);
 
-// Seed function to add some sample questions
-const seedQuestions = async () => {
+// Connect to MongoDB and seed questions
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('MongoDB connected for seeding...');
+        seedQuestions();  // Call the seeding function
+    })
+    .catch((err) => {
+        console.error('Failed to connect to MongoDB for seeding:', err);
+    });
+
+// Seed function to add questions
+async function seedQuestions() {
     try {
-        // Delete existing questions (optional)
+        // Delete any existing questions (optional)
         await Question.deleteMany();
 
-        // Insert new questions
+        // Add new sample questions
         const questions = [
             {
                 question: "What is the capital of the USA?",
@@ -42,14 +49,11 @@ const seedQuestions = async () => {
             }
         ];
 
-        await Question.insertMany(questions);
+        await Question.insertMany(questions); // Insert questions into the DB
         console.log("Sample questions added to the database.");
     } catch (error) {
         console.error("Error during seeding:", error);
     } finally {
         mongoose.connection.close();  // Close the DB connection after seeding
     }
-};
-
-// Run the seeding function
-seedQuestions();
+}
