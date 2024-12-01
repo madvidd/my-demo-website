@@ -1,42 +1,25 @@
-// script.js (Modify this to correctly fetch and display questions)
-let currentQuestionIndex = 0;
-let questions = [];
+// script.js
 
-function loadQuestion() {
-    const question = questions[currentQuestionIndex];
-    document.getElementById('question-text').textContent = question.question;
-    
-    const optionsList = document.getElementById('options');
-    optionsList.innerHTML = ''; // Clear previous options
+// Function to fetch questions from the Netlify function
+function fetchQuestions() {
+    // URL for the Netlify function (get-questions)
+    fetch('/.netlify/functions/get-questions')
+        .then(response => response.json())
+        .then(data => {
+            // Populate the questions on the page
+            const questionsList = document.getElementById('questions-list');
+            questionsList.innerHTML = ''; // Clear any previous content
 
-    question.options.forEach(option => {
-        const li = document.createElement('li');
-        li.textContent = option;
-        li.onclick = () => checkAnswer(option, question.correct);
-        optionsList.appendChild(li);
-    });
+            data.forEach(question => {
+                const li = document.createElement('li');
+                li.textContent = `${question.question}`;
+                questionsList.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching questions:', error);
+        });
 }
 
-function checkAnswer(selectedOption, correctOption) {
-    if (selectedOption === correctOption) {
-        alert('Correct!');
-    } else {
-        alert('Incorrect!');
-    }
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        loadQuestion();
-    } else {
-        alert('You have completed the exam!');
-    }
-}
-
-fetch('/questions')
-    .then(response => response.json())
-    .then(data => {
-        questions = data;
-        loadQuestion();  // Load the first question
-    })
-    .catch(err => {
-        console.error('Failed to load questions:', err);
-    });
+// Call the fetchQuestions function when the page loads
+document.addEventListener('DOMContentLoaded', fetchQuestions);
