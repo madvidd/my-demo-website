@@ -1,5 +1,3 @@
-// public/js/script.js
-
 // Function to fetch questions from the backend
 function fetchQuestions() {
   // Get the JWT token from localStorage (or sessionStorage, or cookies)
@@ -33,5 +31,5 @@ function fetchQuestions() {
   });
 }
 
-// Trigger fetching when the page is loaded
-document.addEventListener('DOMContentLoaded', fetchQuestions);
+// Add event listener to the button
+document.getElementById('start-exam-btn').addEventListener('click', fetchQuestions);
