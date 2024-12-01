@@ -67,4 +67,12 @@ function displayQuestion(questions, index) {
 
 // Event listener to start the exam
 document.getElementById('start-exam-btn').addEventListener('click', function() {
-    document.getElementById('start-exa
+    document.getElementById('start-exam-btn').style.display = 'none';
+    document.getElementById('exam-container').style.display = 'block';
+    fetchQuestions();
+});
+
+// Handle submit
+document.getElementById('submit-btn').addEventListener('click', function() {
+    alert('Exam Submitted! Your answers: ' + JSON.stringify(userAnswers));
+});
