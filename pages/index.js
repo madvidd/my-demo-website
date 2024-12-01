@@ -1,4 +1,3 @@
-// pages/index.js
 import Link from 'next/link'; // Importing the Link component for navigation
 
 export default function Home() {
