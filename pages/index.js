@@ -1,5 +1,6 @@
 // pages/index.js
 import styles from '../styles/Home.module.css';
+import Link from 'next/link';  // Import Link for navigation
 
 export default function Home() {
   // Example dynamic list data
@@ -25,6 +26,13 @@ export default function Home() {
             <li key={index}>{item}</li>
           ))}
         </ul>
+
+        {/* Add the link to the USMLE page */}
+        <div className={styles.link}>
+          <Link href="/usmle">
+            <a className={styles.linkButton}>Learn more about the USMLE Exam</a>
+          </Link>
+        </div>
       </main>
       
       <footer className={styles.footer}>
