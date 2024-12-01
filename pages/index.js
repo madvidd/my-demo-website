@@ -1,36 +1,16 @@
-import Link from 'next/link'; // Import Link for routing
+// pages/index.js
+import Link from 'next/link'; // Import Link from next/link
 
 export default function Home() {
-  const items = ['Apple', 'Banana', 'Cherry'];
-
   return (
     <div>
-      <header>
-        <h1>Welcome to My Demo Website</h1>
-      </header>
-
-      <main>
-        <h2>Here's a dynamic list of fruits:</h2>
-        <ul>
-          {items.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-
-        {/* Link to USMLE Exam page */}
-        <div>
-          <Link href="/usmle">
-            <a>Learn more about the USMLE Exam</a> {/* Link to USMLE page */}
-          </Link>
-        </div>
-
-        {/* Link to Smart Exam page */}
-        <div>
-          <Link href="/smart-exam">
-            <a>Start Smart Exam</a> {/* Link to Smart Exam page */}
-          </Link>
-        </div>
-      </main>
+      <h1>Hello, World!</h1>
+      <p>
+        This is a demo website. To take the <strong>USMLE Exam</strong>, visit the <Link href="/usmle"><a>USMLE Exam Page</a></Link>.
+      </p>
+      <p>
+        For a smart exam, check out the <Link href="/smart-exam"><a>Smart Exam</a></Link> page.
+      </p>
     </div>
   );
 }
