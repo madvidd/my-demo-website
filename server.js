@@ -1,43 +1,31 @@
-require('dotenv').config(); // Load environment variables from .env file
+// server.js (or app.js)
+
+require('dotenv').config(); // Load environment variables from .env
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const examRoutes = require('./routes/exam'); // Import the exam routes
+const authRoutes = require('./routes/auth'); // Import authentication routes
+const bodyParser = require('body-parser');
 const app = express();
-
-// Middleware to parse JSON
-app.use(express.json());
-
-// Ensure the correct port is used (5000 or the one in .env)
 const PORT = process.env.PORT || 5000;
 
-// MongoDB URI from .env (local or cloud MongoDB)
-const mongoURI = process.env.MONGO_URI || 'mongodb://localhost/my-demo-website';
+// Middleware
+app.use(cors()); // Enable CORS for all requests
+app.use(bodyParser.json()); // Parse JSON requests
 
-// Connect to MongoDB
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        console.log('MongoDB connected...');
-    })
-    .catch((err) => {
-        console.error('MongoDB connection error:', err);
-    });
+// Routes
+app.use('/api/exam', examRoutes); // API route for exams
+app.use('/api/auth', authRoutes); // API route for authentication
 
-// Define a simple route to test the server
-app.get('/', (req, res) => {
-    res.send('Hello, world! Your server is up and running!');
-});
+// MongoDB connection
+const mongoURI = process.env.MONGO_URI;
+mongoose
+  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log('MongoDB connection error:', err));
 
-// Example route for getting questions (you can add more API routes as needed)
-app.get('/questions', async (req, res) => {
-    try {
-        // Assuming you have a `Question` model defined
-        const questions = await Question.find();
-        res.json(questions);
-    } catch (err) {
-        res.status(500).json({ message: 'Error fetching questions', error: err });
-    }
-});
-
-// Start the server and listen on the defined port
+// Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
