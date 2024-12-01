@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USMLE Smart Exam</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Demo Website</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>USMLE Practice Exam</h1>
-        
-        <div id="question-container">
-            <p id="question-text">Loading...</p>
-            <ul id="options"></ul>
+    <header>
+        <h1>Welcome to the USMLE Exam Demo</h1>
+    </header>
+
+    <main>
+        <div id="questions-container">
+            <h2>Questions</h2>
+            <ul id="questions-list">
+                <!-- Questions will be displayed here -->
+            </ul>
         </div>
-        
-        <div class="timer">
-            <span id="time-left">Time Left: 10:00</span>
-        </div>
-        
-        <button id="next-button" onclick="nextQuestion()">Next Question</button>
-    </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Demo Website</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
