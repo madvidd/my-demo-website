@@ -1,21 +1,19 @@
 {
-  "name": "usmle-exam-app",
+  "name": "my-demo-website",
   "version": "1.0.0",
-  "description": "A smart exam app for USMLE",
-  "main": "app.js",
+  "private": true,
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "next dev",
+    "build": "next build",  // Build command for production build
+    "start": "next start"
   },
   "dependencies": {
-    "body-parser": "^1.20.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.13.5",
-    "nodemon": "^2.0.19"
+    "next": "latest",  // Ensure you're using the latest version of Next.js
+    "react": "latest",
+    "react-dom": "latest"
   },
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "eslint": "latest",
+    "eslint-config-next": "latest"
+  }
 }
