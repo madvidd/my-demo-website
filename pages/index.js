@@ -1,7 +1,8 @@
 // pages/index.js
-import Link from 'next/link';  // Make sure this import is correct
+import Link from 'next/link'; // Importing the Link component for navigation
 
 export default function Home() {
+  // Sample dynamic list of items
   const items = ['Apple', 'Banana', 'Cherry'];
 
   return (
@@ -22,6 +23,13 @@ export default function Home() {
         <div>
           <Link href="/usmle">
             <a>Learn more about the USMLE Exam</a>
+          </Link>
+        </div>
+
+        {/* Link to Smart Exam page */}
+        <div>
+          <Link href="/smart-exam">
+            <a>Start Smart Exam</a>
           </Link>
         </div>
       </main>
