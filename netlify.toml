@@ -29,5 +29,5 @@
 # Optional: Add environment variables (for things like MongoDB URI, etc.)
 [env]
   MONGO_URI = "mongodb://localhost/my-demo-website"  # Update this if using MongoDB Atlas
-  JWT_SECRET = "your_secret_key_here"  # Update this with your JWT secret for authentication
+  JWT_SECRET = "b2fe5a9b8d7c506b83e06ebd0d923ef3fd43e27ec7343c0e5c60bc2d5fe1a0cd"  # Update this with your JWT secret for authentication
   PORT = "5001"  # This ensures your app runs on port 5001 if you need to define it in the environment
