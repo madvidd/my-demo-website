@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>USMLE Exam System</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USMLE Smart Exam System</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Welcome to the USMLE Exam System</h1>
+    <header>
+        <h1>USMLE Smart Exam System</h1>
+        <button id="start-exam-btn">Start Exam</button>
+    </header>
 
-  <div id="questions-container">
-    <h2>Exam Questions</h2>
-    <ul id="questions-list">
-      <!-- Questions will be populated here by script.js -->
-    </ul>
-  </div>
+    <div id="exam-container" style="display: none;">
+        <h2>Exam Questions</h2>
+        <div id="question-container"></div>
+        <div id="progress">Question 1 of 10</div>
+        <button id="submit-btn" style="display: none;">Submit</button>
+    </div>
 
-  <div id="loading-message" style="display: none;">Loading questions...</div>
+    <div id="loading-message" style="display: none;">Loading questions...</div>
 
-  <!-- Add this button element to start the exam -->
-  <button id="start-exam-btn">Start Exam</button>
-
-  <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
