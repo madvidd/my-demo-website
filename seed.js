@@ -14,6 +14,9 @@ const questionSchema = new mongoose.Schema({
 // Create a model for the Question schema
 const Question = mongoose.model('Question', questionSchema);
 
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', false); // or true depending on your preference
+
 // Connect to MongoDB and seed questions
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
