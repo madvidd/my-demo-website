@@ -1,0 +1,45 @@
+/* styles/Home.module.css */
+.container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    background-color: #282c34;
+    color: white;
+    padding: 20px 0;
+  }
+  
+  .navList {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .navList li {
+    margin: 0;
+  }
+  
+  .navList a {
+    color: #61dafb;
+    text-decoration: none;
+  }
+  
+  .main {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .main h2 {
+    font-size: 24px;
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #282c34;
+    color: white;
+  }
+  
