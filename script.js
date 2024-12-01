@@ -1,31 +1,37 @@
+// public/js/script.js
+
 // Function to fetch questions from the backend
 function fetchQuestions() {
-    // Assuming the token is available in localStorage or a similar storage mechanism
-    const token = localStorage.getItem('jwtToken'); // Modify based on your token storage
+  // Get the JWT token from localStorage (or sessionStorage, or cookies)
+  const token = localStorage.getItem('jwtToken'); // or sessionStorage
 
-    // URL for the backend route (/exam)
-    fetch('/exam', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}` // Send the JWT token in the header
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Populate the questions on the page
-        const questionsList = document.getElementById('questions-list');
-        questionsList.innerHTML = ''; // Clear any previous content
+  if (!token) {
+    alert('Please login to access the exam.');
+    return;
+  }
 
-        data.forEach(question => {
-            const li = document.createElement('li');
-            li.textContent = `${question.question}`;
-            questionsList.appendChild(li);
-        });
-    })
-    .catch(error => {
-        console.error('Error fetching questions:', error);
+  // Make a GET request to /api/exam with Authorization header
+  fetch('/api/exam', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`, // Send token in the Authorization header
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    const questionsList = document.getElementById('questions-list');
+    questionsList.innerHTML = ''; // Clear any existing questions
+
+    data.forEach(question => {
+      const li = document.createElement('li');
+      li.textContent = `${question.question}`;
+      questionsList.appendChild(li);
     });
+  })
+  .catch(error => {
+    console.error('Error fetching questions:', error);
+  });
 }
 
-// Call the fetchQuestions function when the page loads
+// Trigger fetching when the page is loaded
 document.addEventListener('DOMContentLoaded', fetchQuestions);
