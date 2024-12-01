@@ -22,14 +22,14 @@ export default function Home() {
         {/* Link to USMLE Exam page */}
         <div>
           <Link href="/usmle">
-            <a>Learn more about the USMLE Exam</a>
+            <a>Learn more about the USMLE Exam</a> {/* This is the clickable link */}
           </Link>
         </div>
 
         {/* Link to Smart Exam page */}
         <div>
           <Link href="/smart-exam">
-            <a>Start Smart Exam</a>
+            <a>Start Smart Exam</a> {/* This is the clickable link */}
           </Link>
         </div>
       </main>
