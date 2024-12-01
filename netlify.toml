@@ -1,33 +1,23 @@
-# Netlify Configuration File for your project
-
 [build]
-  # The directory where the site will be built
-  publish = "public"  # If your frontend assets are in the "public" directory, change this to where your frontend code is located
-  functions = "netlify-functions"  # Directory where your Netlify functions (serverless functions) will reside
+  command = "npm run build"  # or "next build" if you don't have a build script
+  publish = ".next"
+  functions = "netlify-functions"
+  environment = { NEXT_PRIVATE_TARGET = "server" }
+
+[[redirects]]
+  force = true
+  from = "/api/*"
+  status = 200
+  to = "/.netlify/functions/:splat"
+
+[[redirects]]
+  force = true
+  from = "/*"
+  status = 200
+  to = "/index.html"
 
 [[plugins]]
-  package = "@netlify/plugin-nextjs"  # If you're using Next.js, include this plugin. Otherwise, you can remove this line.
+  package = "@netlify/plugin-lighthouse"
 
-[dev]
-  # This is for running the site locally with Netlify CLI
-  functions = "netlify-functions"  # Same as above, specify your functions folder
-
-[[redirects]]
-  # Redirect all server-side requests to the serverless function
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-  force = true
-
-[[redirects]]
-  # If you're using client-side routing (for single-page apps like React), ensure this route works for all paths
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = true
-
-# Optional: Add environment variables (for things like MongoDB URI, etc.)
-[env]
-  MONGO_URI = "mongodb://localhost:27017/USMLE"  # Update this if using MongoDB Atlas
-  JWT_SECRET = "b2fe5a9b8d7c506b83e06ebd0d923ef3fd43e27ec7343c0e5c60bc2d5fe1a0cd"  # Update this with your JWT secret for authentication
-  PORT = "5001"  # This ensures your app runs on port 5001 if you need to define it in the environment
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
