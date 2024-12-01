@@ -6,8 +6,8 @@ const app = express();
 // Middleware to parse JSON
 app.use(express.json());
 
-// Ensure the correct port is used (5001 or the one in .env)
-const PORT = process.env.PORT || 5001;
+// Ensure the correct port is used (5000 or the one in .env)
+const PORT = process.env.PORT || 5000;
 
 // MongoDB URI from .env (local or cloud MongoDB)
 const mongoURI = process.env.MONGO_URI || 'mongodb://localhost/my-demo-website';
