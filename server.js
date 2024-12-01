@@ -1,55 +1,43 @@
-require('dotenv').config(); // Load environment variables from the .env file
+require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const app = express();
-const port = process.env.PORT || 5001;
 
-// Middleware to parse JSON and handle cross-origin requests
+// Middleware to parse JSON
 app.use(express.json());
-app.use(cors());
 
-// MongoDB connection (using environment variable from .env)
-const dbURI = process.env.MONGO_URI || 'mongodb://localhost/my-demo-website'; // Local DB fallback
+// Ensure the correct port is used (5001 or the one in .env)
+const PORT = process.env.PORT || 5001;
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected...'))
-    .catch((err) => console.log('Failed to connect to MongoDB:', err));
+// MongoDB URI from .env (local or cloud MongoDB)
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost/my-demo-website';
 
-// Define the question schema for your exam
-const questionSchema = new mongoose.Schema({
-    question: String,
-    options: [String],
-    correct: String
+// Connect to MongoDB
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('MongoDB connected...');
+    })
+    .catch((err) => {
+        console.error('MongoDB connection error:', err);
+    });
+
+// Define a simple route to test the server
+app.get('/', (req, res) => {
+    res.send('Hello, world! Your server is up and running!');
 });
 
-// Create a model for the Question schema
-const Question = mongoose.model('Question', questionSchema);
-
-// Route to get all questions from the database
+// Example route for getting questions (you can add more API routes as needed)
 app.get('/questions', async (req, res) => {
     try {
+        // Assuming you have a `Question` model defined
         const questions = await Question.find();
         res.json(questions);
     } catch (err) {
-        res.status(500).json({ message: 'Failed to retrieve questions', error: err });
+        res.status(500).json({ message: 'Error fetching questions', error: err });
     }
 });
 
-// Route to post new questions (for admins to add questions to the database)
-app.post('/questions', async (req, res) => {
-    const { question, options, correct } = req.body;
-    
-    try {
-        const newQuestion = new Question({ question, options, correct });
-        await newQuestion.save();
-        res.status(201).json(newQuestion);
-    } catch (err) {
-        res.status(500).json({ message: 'Failed to save the question', error: err });
-    }
-});
-
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+// Start the server and listen on the defined port
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
