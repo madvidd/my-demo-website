@@ -8,7 +8,7 @@ const examRoutes = require('./routes/exam'); // Import the exam routes
 const authRoutes = require('./routes/auth'); // Import authentication routes
 const bodyParser = require('body-parser');
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Middleware
 app.use(cors()); // Enable CORS for all requests
