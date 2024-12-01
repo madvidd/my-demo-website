@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",  // Build command for production build
+    "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "next": "latest",  // Ensure you're using the latest version of Next.js
+    "next": "latest",
     "react": "latest",
     "react-dom": "latest"
   },
