@@ -1,7 +1,6 @@
-import Link from 'next/link'; // Importing the Link component for navigation
+import Link from 'next/link'; // Import Link for routing
 
 export default function Home() {
-  // Sample dynamic list of items
   const items = ['Apple', 'Banana', 'Cherry'];
 
   return (
@@ -21,14 +20,14 @@ export default function Home() {
         {/* Link to USMLE Exam page */}
         <div>
           <Link href="/usmle">
-            <a>Learn more about the USMLE Exam</a> {/* This is the clickable link */}
+            <a>Learn more about the USMLE Exam</a> {/* Link to USMLE page */}
           </Link>
         </div>
 
         {/* Link to Smart Exam page */}
         <div>
           <Link href="/smart-exam">
-            <a>Start Smart Exam</a> {/* This is the clickable link */}
+            <a>Start Smart Exam</a> {/* Link to Smart Exam page */}
           </Link>
         </div>
       </main>
