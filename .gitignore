@@ -1,0 +1,23 @@
+# Ignore node_modules folder
+node_modules/
+
+# Ignore environment variables file (contains secrets like database URIs, API keys)
+.env
+
+# Ignore build and distribution directories (for frontend frameworks)
+dist/
+build/
+
+# Ignore log files
+*.log
+
+# Ignore operating system files (e.g., macOS, Windows)
+.DS_Store   # macOS-specific
+Thumbs.db   # Windows-specific
+
+# Ignore test/coverage folders
+coverage/
+
+# Ignore IDE and editor configuration files (VS Code, etc.)
+.vscode/
+.idea/
